@@ -1,0 +1,18 @@
+{
+  "name": "duzit",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && ng serve --port 4201",
+    "start:backend": "cd backend && npx nest start"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "concurrently": "^10.0.3",
+    "prettier": "^3.6.2"
+  }
+}
