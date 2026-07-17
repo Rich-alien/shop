@@ -3,10 +3,16 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { URL_API } from '../shared/data-access/shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes), provideClientHydration(withEventReplay())
-  ]
+    provideRouter(routes),
+    {
+      provide: URL_API,
+      useValue: 'http://localhost:3000/',
+    },
+    provideClientHydration(withEventReplay()),
+  ],
 };

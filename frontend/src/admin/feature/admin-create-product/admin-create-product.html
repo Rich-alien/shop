@@ -1,0 +1,11 @@
+<form [formGroup]="productForm">
+  <div class="container">
+    <input placeholder="name" formControlName="name">
+    <input placeholder="description" formControlName="description">
+    <input placeholder="price" type="number" formControlName="price">
+    <ui-button class="button"
+               [disabled]="productForm.invalid"
+               (click)="create()">Создать
+    </ui-button>
+  </div>
+</form>
