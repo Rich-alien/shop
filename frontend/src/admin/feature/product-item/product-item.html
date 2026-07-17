@@ -1,0 +1,24 @@
+<div class="product-card">
+  <div class="main">
+    <div>
+      <p class="eyebrow">Product</p>
+      <h4 class="title">{{ name() }}</h4>
+    </div>
+
+    <strong class="price">{{ price() }} ₽</strong>
+  </div>
+
+  <p class="description">
+    {{ description() || 'Описание не добавлено' }}
+  </p>
+
+  <div class="meta">
+    @if (uuid()) {
+      <span class="uuid">#{{ uuid() }}</span>
+    }
+
+    <time [attr.datetime]="createdAt()">
+      {{ createdAt() | date: 'dd.MM.yyyy HH:mm' }}
+    </time>
+  </div>
+</div>
