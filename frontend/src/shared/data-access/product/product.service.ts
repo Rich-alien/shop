@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product, ProductDto } from './interfaces';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { URL_API } from '../shared';
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,6 @@ export class ProductService {
   }
 
   getAllProduct(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}products`);
+    return this.http.get<Product[]>(`${this.apiUrl}products`).pipe(catchError(() => of([])));
   }
 }

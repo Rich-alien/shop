@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { Product } from '../../../shared/data-access/product/interfaces';
 
 @Component({
-  selector: 'admin-product-item',
+  selector: 'product-item',
   imports: [DatePipe],
   templateUrl: './product-item.html',
   styleUrl: './product-item.scss',

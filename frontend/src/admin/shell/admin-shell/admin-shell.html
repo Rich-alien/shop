@@ -4,32 +4,14 @@
 </header>
 
 <div class="container">
-  <admin-create-product></admin-create-product>
+  <admin-navigation></admin-navigation>
 
-  <section class="products-section">
-    <div class="products-section__header">
-      <p>Catalog</p>
-      <h4>Список продуктов</h4>
-    </div>
+  <div class="section">
+    <admin-create-product></admin-create-product>
+    <product-section></product-section>
+  </div>
 
-    @if (products$ | async; as products) {
-      <div class="products-list">
-        @for (product of products; track product.uuid) {
-          <admin-product-item
-            [uuid]="product.uuid"
-            [name]="product.name"
-            [description]="product.description"
-            [price]="product.price"
-            [createdAt]="product.createdAt"
-          />
-        } @empty {
-          <p class="products-empty">Продукты пока не добавлены</p>
-        }
-      </div>
-    } @else {
-      <p class="products-empty">Загрузка продуктов...</p>
-    }
-  </section>
+  <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+

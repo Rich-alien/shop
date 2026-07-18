@@ -4,10 +4,10 @@
       <input placeholder="name" formControlName="name">
     </ui-input>
     <ui-input>
-      <input placeholder="description" formControlName="description">
+      <input placeholder="description" formControlName="description"> <!--todo: transform to text-area-->
     </ui-input>
     <ui-input>
-      <input placeholder="price" type="number" formControlName="price">
+      <input [min]="0" placeholder="price" type="number" formControlName="price">
     </ui-input>
     <ui-button class="button"
                [disabled]="productForm.invalid"

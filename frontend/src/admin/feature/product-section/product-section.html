@@ -1,0 +1,24 @@
+<section class="section">
+  <div class="header">
+    <p>Catalog</p>
+    <h4>Список продуктов</h4>
+  </div>
+
+  @if (products(); as products) {
+    <div class="list">
+      @for (product of products; track product.uuid) {
+        <product-item
+          [uuid]="product.uuid"
+          [name]="product.name"
+          [description]="product.description"
+          [price]="product.price"
+          [createdAt]="product.createdAt"
+        />
+      } @empty {
+        <p class="empty">Продукты пока не добавлены</p>
+      }
+    </div>
+  } @else {
+    <p class="empty">Загрузка продуктов...</p>
+  }
+</section>
