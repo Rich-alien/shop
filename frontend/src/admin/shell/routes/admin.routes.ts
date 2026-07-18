@@ -4,5 +4,22 @@ export const ADMIN_ROUTES: Routes = [
   {
     path: '',
     loadComponent: () => import('../admin-shell/admin-shell').then((m) => m.AdminShell),
+    children: [
+      { path: '', redirectTo: 'all', pathMatch: 'full' },
+      {
+        path: 'products',
+        loadComponent: () =>
+          import('../admin-product-view-shell/admin-product-view-shell').then(
+            (m) => m.AdminProductViewShell,
+          ),
+      },
+      {
+        path: 'users',
+        loadComponent: () =>
+          import('../admin-user-view-shell/admin-user-view-shell').then(
+            (m) => m.AdminUserViewShell,
+          ),
+      },
+    ],
   },
 ];

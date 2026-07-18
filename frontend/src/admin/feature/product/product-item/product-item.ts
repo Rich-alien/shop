@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Product } from '../../../shared/data-access/product/interfaces';
+import { Product } from '../../../../shared/data-access/product/interfaces';
 
 @Component({
   selector: 'product-item',
