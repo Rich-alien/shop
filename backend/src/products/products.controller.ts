@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ProductsService } from './products.service';
 import type { Product } from './models/product.model';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -18,18 +19,18 @@ export class ProductsController {
   }
 
   @Get(':productId')
-  findOne(@Param('productId') productId: string): Product {
-    return {} as Product;
+  findOne(@Param('productId') productId: string): Promise<Product> {
+    return this.productsService.getProduct(productId);
   }
 
   @Patch(':productId')
-  update(@Param('productId') productId: string): Product {
-    return {} as Product;
+  update(@Param('productId') productId: string, @Body() dto: UpdateProductDto): Promise<Product> {
+    return this.productsService.patchProduct(productId, dto);
   }
 
   @Delete(':productId')
-  remove(@Param('productId') productId: string): void {
-    //
+  remove(@Param('productId') productId: string): Promise<Product> {
+    return this.productsService.removeProduct(productId);
   }
 
   @Get(':search')
