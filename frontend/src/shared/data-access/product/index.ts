@@ -1,1 +1,2 @@
-export {ProductService} from './product.service'
+export { ProductService } from './product.service';
+export * from './interfaces';

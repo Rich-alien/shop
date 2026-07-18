@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductItem } from '../product-item/product-item';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ProductService } from '../../../../shared/data-access';
+import { ProductService } from '@shared/data-access';
 
 @Component({
   selector: 'product-section',

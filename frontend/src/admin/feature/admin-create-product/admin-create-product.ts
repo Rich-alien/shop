@@ -1,9 +1,9 @@
 import { Component, DestroyRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService } from '../../../shared/data-access';
-import { ProductDto } from '../../../shared/data-access/product/interfaces';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UiButton, UiInput } from '../../../ui-kit';
+import { UiInput, UiButton } from '@uikit';
+import { ProductService } from '@shared/data-access';
+import { ProductDto } from '@shared/data-access';
 
 @Component({
   selector: 'admin-create-product',

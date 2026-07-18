@@ -13,7 +13,16 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@uikit": ["src/ui-kit/index.ts"],
+
+      "@admin/feature": ["src/admin/feature/index.ts"],
+      "@admin/shell": ["src/admin/shell/index.ts"],
+
+      "@shared/data-access": ["src/shared/data-access/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

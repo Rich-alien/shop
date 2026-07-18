@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UiButton } from '../../../ui-kit';
-import { AdminNavigation } from '../../feature/navigation/navigation';
+import { UiButton } from '@uikit';
+import { AdminNavigation } from '@admin/feature';
 
 @Component({
   selector: 'app-admin-shell',

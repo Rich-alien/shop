@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminProduct } from '../../feature/product/product';
+import { AdminProduct } from '@admin/feature';
 
 @Component({
   selector: 'admin-product-view-shell',
