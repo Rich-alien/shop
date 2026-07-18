@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.06);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.container:focus-within {
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+:host ::ng-deep input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: #1e3a8a;
+  font: inherit;
+  line-height: 1.4;
+  outline: none;
+}
+
+:host ::ng-deep input::placeholder {
+  color: #94a3b8;
+}
+
+:host ::ng-deep input:disabled {
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.container:has(input:disabled) {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.container:has(input.ng-invalid.ng-touched) {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.14);
+}

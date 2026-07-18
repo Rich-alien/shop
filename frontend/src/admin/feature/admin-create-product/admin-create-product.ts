@@ -3,11 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ProductService } from '../../../shared/data-access';
 import { ProductDto } from '../../../shared/data-access/product/interfaces';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { UiButton } from '../../../ui-kit';
+import { UiButton, UiInput } from '../../../ui-kit';
 
 @Component({
   selector: 'admin-create-product',
-  imports: [ReactiveFormsModule, UiButton],
+  imports: [ReactiveFormsModule, UiButton, UiInput],
   templateUrl: './admin-create-product.html',
   styleUrl: './admin-create-product.scss',
 })
