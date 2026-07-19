@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ProductItem } from '../product-item/product-item';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ProductService } from '@shared/data-access';
+import { ProductStore } from '@shared/data-access';
 
 @Component({
   selector: 'product-section',
@@ -10,7 +9,11 @@ import { ProductService } from '@shared/data-access';
   styleUrl: './product-section.scss',
 })
 export class ProductSection {
-  private readonly productService = inject(ProductService);
+  private readonly productStore = inject(ProductStore);
 
-  readonly products = toSignal(this.productService.getAllProduct(), { initialValue: [] });
+  readonly products = this.productStore.entities;
+
+  protected removeProduct(id: string): void {
+    this.productStore.removeProduct(id);
+  }
 }

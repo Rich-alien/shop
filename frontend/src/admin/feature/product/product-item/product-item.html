@@ -1,4 +1,4 @@
-<div class="product-card">
+<div class="product-card" (click)="openCard()">
   <div class="main">
     <div>
       <p class="eyebrow">Product</p>
@@ -17,8 +17,14 @@
       <span class="uuid">#{{ uuid() }}</span>
     }
 
-    <time [attr.datetime]="createdAt()">
-      {{ createdAt() | date: 'dd.MM.yyyy HH:mm' }}
-    </time>
+    <div class="actions">
+      <time [attr.datetime]="createdAt()">
+        {{ createdAt() | date: 'dd.MM.yyyy HH:mm' }}
+      </time>
+
+      <button class="delete-button" type="button" (click)="removeCard($event)">
+        Удалить
+      </button>
+    </div>
   </div>
 </div>

@@ -13,6 +13,7 @@
           [description]="product.description"
           [price]="product.price"
           [createdAt]="product.createdAt"
+          (remove)="removeProduct(product.uuid)"
         />
       } @empty {
         <p class="empty">Продукты пока не добавлены</p>

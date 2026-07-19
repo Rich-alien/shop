@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Product } from '@shared/data-access';
 
@@ -14,4 +14,16 @@ export class ProductItem {
   description = input.required<string>();
   price = input.required<number>();
   createdAt = input.required<Product['createdAt']>();
+
+  remove = output<void>();
+  openItem = output<void>();
+
+  protected openCard(): void {
+    return this.openItem.emit();
+  }
+
+  protected removeCard(event: MouseEvent): void {
+    event.stopPropagation();
+    return this.remove.emit();
+  }
 }

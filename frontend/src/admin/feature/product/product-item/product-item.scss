@@ -75,3 +75,44 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.delete-button {
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fff1f2;
+  color: #be123c;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.delete-button:hover {
+  border-color: #f43f5e;
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+.delete-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.18);
+}
+
+.delete-button:active {
+  transform: translateY(1px);
+}

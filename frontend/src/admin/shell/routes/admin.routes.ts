@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ProductStore } from '@shared/data-access';
+import { ProductService } from '@shared/data-access';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -8,6 +10,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
       {
         path: 'products',
+        providers: [ProductService, ProductStore],
         loadComponent: () =>
           import('../product-view-shell/admin-product-view-shell').then(
             (m) => m.AdminProductViewShell,
@@ -16,9 +19,7 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'users',
         loadComponent: () =>
-          import('../user-view-shell/admin-user-view-shell').then(
-            (m) => m.AdminUserViewShell,
-          ),
+          import('../user-view-shell/admin-user-view-shell').then((m) => m.AdminUserViewShell),
       },
     ],
   },
