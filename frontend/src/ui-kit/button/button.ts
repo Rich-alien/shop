@@ -6,5 +6,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './button.scss',
 })
 export class UiButton {
+  type = input<'button' | 'submit' | 'reset'>('button');
   disabled = input(false);
 }

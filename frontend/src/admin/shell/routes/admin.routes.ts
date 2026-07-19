@@ -7,7 +7,7 @@ export const ADMIN_ROUTES: Routes = [
     path: '',
     loadComponent: () => import('../admin-shell/admin-shell').then((m) => m.AdminShell),
     children: [
-      { path: '', redirectTo: 'all', pathMatch: 'full' },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
       {
         path: 'products',
         providers: [ProductService, ProductStore],

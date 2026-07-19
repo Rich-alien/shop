@@ -6,7 +6,14 @@ import {
   withProps,
   withState,
 } from '@ngrx/signals';
-import { Product, ProductDto, ProductService } from '@shared/data-access';
+import {
+  DEFAULT_STATUS,
+  loadingStatus,
+  Product,
+  ProductDto,
+  ProductService,
+  StoreBaseState,
+} from '@shared/data-access';
 import {
   addEntity,
   removeEntity,
@@ -15,10 +22,12 @@ import {
   withEntities,
 } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { filter, pipe, switchMap, tap } from 'rxjs';
+import { catchError, filter, Observable, pipe, switchMap, tap } from 'rxjs';
 import { inject } from '@angular/core';
 
 const selectId: SelectEntityId<Product> = (ns): string => ns.uuid;
+
+interface ProductState extends StoreBaseState {}
 
 export const ProductStore = signalStore(
   withEntities<Product>(),
@@ -27,21 +36,25 @@ export const ProductStore = signalStore(
       _productService: productService,
     };
   }),
-  withState({ isLoaded: false }),
+  withState<ProductState>({ status: DEFAULT_STATUS, error: null }),
   withMethods((store) => {
     const init = rxMethod<void>(
       pipe(
-        filter(() => !store.isLoaded()),
-        switchMap(() => store._productService.getAllProduct()),
-        tap((products) =>
-          patchState(store, { isLoaded: true }, setAllEntities(products, { selectId })),
-        ),
+        filter(() => store.status() !== loadingStatus['IDLE']),
+        switchMap(() => loadProducts()),
       ),
     );
+    const reInit = rxMethod<void>(pipe(switchMap(() => loadProducts())));
     const createProduct = rxMethod<ProductDto>(
       pipe(
         switchMap((product) => store._productService.createProduct(product)),
         tap((product) => patchState(store, addEntity(product, { selectId }))),
+        filter(() => !!store.entities().length),
+        tap(() =>
+          patchState(store, {
+            status: loadingStatus['LOADED'],
+          }),
+        ),
       ),
     );
 
@@ -49,10 +62,42 @@ export const ProductStore = signalStore(
       pipe(
         switchMap((id) => store._productService.removeProduct(id)),
         tap((product) => patchState(store, removeEntity(product.uuid))),
+        filter(() => !store.entities().length),
+        tap(() =>
+          patchState(store, {
+            status: loadingStatus['EMPTY'],
+          }),
+        ),
       ),
     );
+
+    function loadProducts(): Observable<Product[]> {
+      patchState(store, {
+        status: loadingStatus['LOADING'],
+        error: null,
+      });
+
+      return store._productService.getAllProduct().pipe(
+        tap((products) =>
+          patchState(
+            store,
+            { status: products.length ? loadingStatus['LOADED'] : loadingStatus['EMPTY'] },
+            setAllEntities(products, { selectId }),
+          ),
+        ),
+        catchError((error) => {
+          patchState(store, {
+            status: loadingStatus['ERROR'],
+            error,
+          });
+          return [];
+        }),
+      );
+    }
+
     return {
       init,
+      reInit,
       createProduct,
       removeProduct,
     };

@@ -3,23 +3,28 @@
     <p>Catalog</p>
     <h4>Список продуктов</h4>
   </div>
+  @switch (status()) {
+    @case (loadingStatus['EMPTY']) {
+      <p class="empty">Продукты пока не добавлены</p>
+    }
+    @case (loadingStatus['LOADING']) {
+      <p class="empty">Загрузка продуктов...</p>
+    }
+    @case (loadingStatus['LOADED']) {
+      <div class="list">
+        @for (product of products(); track product.uuid) {
+          <product-item
+            [uuid]="product.uuid"
+            [name]="product.name"
+            [description]="product.description"
+            [price]="product.price"
+            [createdAt]="product.createdAt"
+            (remove)="removeProduct(product.uuid)"
+          />
+        } @empty {
 
-  @if (products(); as products) {
-    <div class="list">
-      @for (product of products; track product.uuid) {
-        <product-item
-          [uuid]="product.uuid"
-          [name]="product.name"
-          [description]="product.description"
-          [price]="product.price"
-          [createdAt]="product.createdAt"
-          (remove)="removeProduct(product.uuid)"
-        />
-      } @empty {
-        <p class="empty">Продукты пока не добавлены</p>
-      }
-    </div>
-  } @else {
-    <p class="empty">Загрузка продуктов...</p>
+        }
+      </div>
+    }
   }
 </section>

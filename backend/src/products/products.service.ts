@@ -26,8 +26,13 @@ export class ProductsService {
     return product;
   }
 
-  patchProduct(id: string, data: UpdateProductDto): Promise<Product> {
-    return this.prisma.product.update({ where: { uuid: id }, data });
+ async patchProduct(id: string, data: UpdateProductDto): Promise<Product> {
+    try {
+      return await this.prisma.product.update({ where: { uuid: id }, data });
+    } catch (error) {
+      throw new NotFoundException('Product not found');
+    }
+
   }
 
   async removeProduct(id: string): Promise<Product> {
@@ -38,7 +43,7 @@ export class ProductsService {
     // }
     // await fs.unlink(product.imagePath); // Убрать привязку к данным
     try {
-      return this.prisma.product.delete({ where: { uuid: id } });
+      return await this.prisma.product.delete({ where: { uuid: id } });
     } catch (error) {
       throw new NotFoundException('Product not found');
     }

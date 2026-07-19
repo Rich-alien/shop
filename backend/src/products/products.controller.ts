@@ -33,7 +33,7 @@ export class ProductsController {
     return this.productsService.removeProduct(productId);
   }
 
-  @Get(':search')
+  @Get('search/:search')
   search(@Param('search') search: string): Product[] {
     return [];
   }

@@ -1,4 +1,4 @@
-<form [formGroup]="productForm">
+<form [formGroup]="form" (ngSubmit)="create()">
   <div class="container">
     <ui-input>
       <input placeholder="name" formControlName="name">
@@ -10,8 +10,8 @@
       <input [min]="0" placeholder="price" type="number" formControlName="price">
     </ui-input>
     <ui-button class="button"
-               [disabled]="productForm.invalid"
-               (click)="create()">Создать
+               type="submit"
+               [disabled]="form.invalid">Создать
     </ui-button>
   </div>
 </form>
