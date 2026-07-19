@@ -9,14 +9,14 @@ export const ADMIN_ROUTES: Routes = [
       {
         path: 'products',
         loadComponent: () =>
-          import('../admin-product-view-shell/admin-product-view-shell').then(
+          import('../product-view-shell/admin-product-view-shell').then(
             (m) => m.AdminProductViewShell,
           ),
       },
       {
         path: 'users',
         loadComponent: () =>
-          import('../admin-user-view-shell/admin-user-view-shell').then(
+          import('../user-view-shell/admin-user-view-shell').then(
             (m) => m.AdminUserViewShell,
           ),
       },

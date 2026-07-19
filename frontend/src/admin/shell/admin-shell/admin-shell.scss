@@ -1,6 +1,10 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 100dvw;
   height: 100dvh;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .header {
@@ -22,14 +26,17 @@
 
 .container {
   display: grid;
-  height: 100%;
+  grid-template-columns: 300px 1fr;
+  flex: 1;
+  min-height: 0;
 }
 
 .section {
   display: flex;
   width: 100%;
-  overflow: auto;
-  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
   flex-direction: column;
   gap: 28px;
   padding: 24px;
