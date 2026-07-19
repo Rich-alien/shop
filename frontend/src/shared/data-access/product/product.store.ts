@@ -31,7 +31,7 @@ export const ProductStore = signalStore(
   withMethods((store) => {
     const init = rxMethod<void>(
       pipe(
-        filter(() => !store.isLoaded),
+        filter(() => !store.isLoaded()),
         switchMap(() => store._productService.getAllProduct()),
         tap((products) =>
           patchState(store, { isLoaded: true }, setAllEntities(products, { selectId })),
