@@ -2,7 +2,7 @@ export type LoadingStatus = 'idle' | 'loading' | 'loaded' | 'empty' | 'error';
 
 export const DEFAULT_STATUS = 'idle';
 
-export const loadingStatus: Record<string, LoadingStatus> = {
+export const loadingStatus = {
   LOADING: 'loading',
   LOADED: 'loaded',
   EMPTY: 'empty',

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { ProductStore } from '@shared/data-access';
-import { ProductService } from '@shared/data-access';
+import { ProductSocketService, ProductStore, ProductService } from '@shared/data-access';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -10,7 +9,7 @@ export const ADMIN_ROUTES: Routes = [
       { path: '', redirectTo: 'products', pathMatch: 'full' },
       {
         path: 'products',
-        providers: [ProductService, ProductStore],
+        providers: [ProductService, ProductSocketService, ProductStore],
         loadComponent: () =>
           import('../product-view-shell/admin-product-view-shell').then(
             (m) => m.AdminProductViewShell,

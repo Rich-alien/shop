@@ -3,13 +3,19 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './models/product.model';
 import { PrismaService } from '../prisma/prisma.service';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { ProductsGateway } from './products.gateway';
 
 @Injectable()
 export class ProductsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly productsGateway: ProductsGateway,
+  ) {}
 
-  createProduct(dto: CreateProductDto): Promise<Product> {
-    return this.prisma.product.create({ data: dto });
+  async createProduct(dto: CreateProductDto): Promise<Product> {
+    const product = await this.prisma.product.create({ data: dto });
+    this.productsGateway.notifyProductCreated(product);
+    return product;
   }
 
   getAllProduct(): Promise<Product[]> {
@@ -26,13 +32,14 @@ export class ProductsService {
     return product;
   }
 
- async patchProduct(id: string, data: UpdateProductDto): Promise<Product> {
+  async patchProduct(id: string, data: UpdateProductDto): Promise<Product> {
     try {
-      return await this.prisma.product.update({ where: { uuid: id }, data });
+      const product = await this.prisma.product.update({ where: { uuid: id }, data });
+      this.productsGateway.notifyProductUpdated(product);
+      return product;
     } catch (error) {
       throw new NotFoundException('Product not found');
     }
-
   }
 
   async removeProduct(id: string): Promise<Product> {
@@ -43,7 +50,9 @@ export class ProductsService {
     // }
     // await fs.unlink(product.imagePath); // Убрать привязку к данным
     try {
-      return await this.prisma.product.delete({ where: { uuid: id } });
+      const product = await this.prisma.product.delete({ where: { uuid: id } });
+      this.productsGateway.notifyProductDeleted(product.uuid);
+      return product;
     } catch (error) {
       throw new NotFoundException('Product not found');
     }
