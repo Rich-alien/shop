@@ -51,7 +51,7 @@ export const ProductStore = signalStore(
   withMethods((store) => {
     const init = rxMethod<void>(
       pipe(
-        filter(() => store.status() !== DEFAULT_STATUS),
+        filter(() => store.status() === DEFAULT_STATUS),
         switchMap(() => loadProducts()),
       ),
     );
