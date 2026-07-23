@@ -1,4 +1,174 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 200px;
+  gap: 8px;
+  color: #242424;
+}
+
+.link-wrap {
+  position: absolute;
+  inset: 0 0 38px;
+  z-index: 3;
+  border-radius: 12px;
+}
+
+.top-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 100%;
+  height: 330px;
+  background:
+    linear-gradient(135deg, rgba(167, 58, 253, 0.12), rgba(203, 76, 255, 0.04)),
+    #f1eef6;
+}
+
+.top-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: rgba(167, 58, 253, 0.12);
+  filter: blur(28px);
+}
+
+.middle-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.currency {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  overflow: hidden;
+  color: #868695;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.brand-name {
+  color: #242424;
+  font-weight: 600;
+}
+
+.product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rating-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #868695;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.rating-total {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #f5a623;
+  font-weight: 600;
+}
+
+.rating-total::before {
+  content: '★';
+  font-size: 12px;
+}
+
+.rating-quantity::before {
+  content: '•';
+  margin-right: 6px;
+}
+
+.action-wrap {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  gap: 4px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 34px;
+  background-color: #f1ddff;
+  border-radius: 12px;
+  color: #a73afd;
+  width: 100%;
+  padding: 0 12px;
+  font-weight: 700;
+
+  div {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+
+  div:hover {
+    background-color: rgba(167, 58, 253, 0.1);
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #a73afd;
+  border-radius: 12px;
+  border: 2px solid #0000;
+  padding-block: 7px 8px;
+  padding-inline: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: white;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover {
+  background-color: #b84cff;
+}
+
+.button:active {
+  transform: translateY(1px);
 }

@@ -5,9 +5,12 @@
   height: 100dvh;
   max-width: 100%;
   overflow: hidden;
+  background-color: #f6f6f9;
 }
 
 
 .wrapper {
-  background-color: #f6f6f9;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }

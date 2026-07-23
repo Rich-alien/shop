@@ -1,12 +1,31 @@
 <article class="wrapper">
-  <!--  <a></a> full wrap block -->
+  <a class="link-wrap"></a>
   <div class="top-wrap">
     <!--// sceleton or image-->
   </div>
   <div class="middle-wrap">
-    <!--description-->
+    <div class="price-wrap">
+      <span class="price">1000</span>
+      <span class="currency">Р</span>
+    </div>
+    <h2 class="container">
+      <span class="brand-name">BRAND-NAME</span>
+      <span class="product-name">PRODUCT NAME</span>
+    </h2>
+    <div class="rating-wrap">
+      <span class="rating-total">4.1</span>
+      <span class="rating-quantity">1200</span>
+    </div>
   </div>
-  <div class="bottom-wrap">
-    <!--move to the cart-->
+  <div class="action-wrap">
+      @if (isOnBasket()) {
+        <div class="counter">
+          <div>-</div>
+          <span>1</span>
+          <div>+</div>
+        </div>
+      } @else {
+        <button class="button" (click)="addToCart()">date to ship</button>
+      }
   </div>
 </article>

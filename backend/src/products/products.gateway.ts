@@ -20,14 +20,14 @@ export class ProductsGateway implements OnGatewayConnection, OnGatewayDisconnect
   private server: Server;
 
   handleConnection(client: Socket, ...args: any[]): void {
-    console.log('Socket connected:', client);
+    // console.log('Socket connected:', client);
     client.emit('connected', {
       message: 'Connected to products socket',
     });
   }
 
   handleDisconnect(client: Socket): void {
-    console.log('Socket disconnected:', client);
+    // console.log('Socket disconnected:', client);
   }
 
   notifyProductCreated(product: Product): void {
